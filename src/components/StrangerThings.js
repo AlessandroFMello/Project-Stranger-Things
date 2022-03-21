@@ -115,11 +115,9 @@ class StrangerThings extends React.Component {
 
   renderDevelopment() {
     const inDevelopment = JSON.parse(REACT_APP_DEVELOPMENT);
-    if (inDevelopment) {
-      return (
-        <h3>Em desenvolvimento</h3>
-      );
-    }
+    return (
+      inDevelopment && <h3>Em desenvolvimento</h3>
+    );
   }
 
   render() {
