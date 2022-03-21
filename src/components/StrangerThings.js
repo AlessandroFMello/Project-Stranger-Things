@@ -11,6 +11,7 @@ const {
   REACT_APP_HAWKINS_TIMEOUT,
   REACT_APP_UPSIDEDOWN_URL,
   REACT_APP_UPSIDEDOWN_TIMEOUT,
+  REACT_APP_DEVELOPMENT,
 } = process.env;
 
 const strangerThingsConfig = {
@@ -45,6 +46,8 @@ class StrangerThings extends React.Component {
 
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
+
+    this.renderDevelopment = this.renderDevelopment.bind(this);
   }
 
   handleInput(event) {
@@ -110,6 +113,15 @@ class StrangerThings extends React.Component {
     );
   }
 
+  renderDevelopment() {
+    const inDevelopment = JSON.parse(REACT_APP_DEVELOPMENT);
+    if (inDevelopment) {
+      return (
+        <h3>Em desenvolvimento</h3>
+      );
+    }
+  }
+
   render() {
     const {
       hereIsTheUpsideDownWorld, characterName, characters, page,
@@ -122,6 +134,7 @@ class StrangerThings extends React.Component {
       >
         <div className="content strangerfy">
           <div className="change-reality">
+            { this.renderDevelopment() }
             <button type="button" onClick={ this.changeRealityClick }>
               {' '}
               Mudar de Realidade
